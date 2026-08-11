@@ -1,8 +1,7 @@
-@props(['settings', 'licenses' => null])
+@props(['settings'])
 
 @php
     $waNumber = preg_replace('/\D/', '', (string) $settings->whatsapp_number);
-    $licenses = $licenses ?? collect();
     $photo = $settings->profile_photo ? asset('storage/' . $settings->profile_photo) : null;
 @endphp
 
@@ -41,31 +40,22 @@
             </div>
         </div>
 
-        {{-- Kolom visual: foto bila ada, jika tidak tampilkan kartu izin (trust) --}}
+        {{-- Kolom visual: foto profil, dengan placeholder elegan bila belum diupload --}}
         <div class="relative">
-            @if ($photo)
-                <div class="relative mx-auto max-w-sm">
-                    <div class="absolute -inset-3 rounded-3xl border border-gold/30"></div>
-                    <img src="{{ $photo }}" alt="Muhammad Yani" class="relative w-full rounded-2xl object-cover shadow-2xl">
-                </div>
-            @elseif ($licenses->isNotEmpty())
-                <div class="mx-auto max-w-md rounded-2xl border border-white/10 bg-navy-secondary/60 p-6 backdrop-blur">
-                    <p class="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-gold">
-                        <x-heroicon-o-shield-check class="h-5 w-5" /> Izin &amp; Kualifikasi Resmi
-                    </p>
-                    <ul class="space-y-3">
-                        @foreach ($licenses as $license)
-                            <li class="flex items-start gap-3 rounded-xl bg-white/5 px-4 py-3">
-                                <x-heroicon-s-check-circle class="mt-0.5 h-5 w-5 flex-none text-gold" />
-                                <div>
-                                    <p class="text-sm font-medium text-cream">{{ $license->title }}</p>
-                                    <p class="font-mono text-xs text-cream/60">{{ $license->number }}</p>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            <div class="relative mx-auto max-w-sm">
+                <div class="absolute -inset-3 rounded-3xl border border-gold/30"></div>
+                @if ($photo)
+                    <img src="{{ $photo }}" alt="Muhammad Yani" class="relative aspect-[3/4] w-full rounded-2xl object-cover shadow-2xl">
+                @else
+                    <div class="relative flex aspect-[3/4] w-full flex-col items-center justify-center rounded-2xl bg-navy-secondary/60 shadow-2xl">
+                        <span class="flex h-24 w-24 items-center justify-center rounded-full border-2 border-gold/40 text-gold">
+                            <x-heroicon-o-user class="h-12 w-12" />
+                        </span>
+                        <p class="mt-5 font-heading text-xl text-cream">Muhammad Yani</p>
+                        <p class="mt-1 text-xs uppercase tracking-widest text-gold/80">Konsultan Pajak</p>
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
 </section>

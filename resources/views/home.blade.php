@@ -1,7 +1,7 @@
 <x-layouts.app>
-    <x-sections.hero :settings="$settings" :licenses="$licenses" />
-    <x-sections.services :services="$services" />
+    <x-sections.hero :settings="$settings" />
     <x-sections.licenses :licenses="$licenses" />
+    <x-sections.services :services="$services" />
     <x-sections.about :settings="$settings" />
     <x-sections.values />
     <x-sections.testimonials :testimonials="$testimonials" />
