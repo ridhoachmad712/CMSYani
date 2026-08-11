@@ -36,6 +36,7 @@ class DownloadForm
                         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                     ])
                     ->maxSize(10240)
+                    ->fetchFileInformation(false)
                     ->columnSpanFull(),
                 TextInput::make('category')
                     ->label('Kategori')

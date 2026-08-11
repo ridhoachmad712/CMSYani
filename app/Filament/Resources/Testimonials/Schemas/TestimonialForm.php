@@ -39,7 +39,8 @@ class TestimonialForm
                     ->disk('public')
                     ->directory('testimonials')
                     ->visibility('public')
-                    ->maxSize(2048),
+                    ->maxSize(2048)
+                    ->fetchFileInformation(false),
                 TextInput::make('order')
                     ->label('Urutan')
                     ->numeric()

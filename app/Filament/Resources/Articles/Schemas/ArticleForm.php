@@ -84,6 +84,7 @@ class ArticleForm
                             ->visibility('public')
                             ->imageEditor()
                             ->maxSize(2048)
+                            ->fetchFileInformation(false)
                             ->columnSpanFull(),
                         TextInput::make('meta_title')
                             ->label('Meta Title (SEO)')

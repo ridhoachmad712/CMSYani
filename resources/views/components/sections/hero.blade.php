@@ -6,13 +6,11 @@
     $heroColor = $settings->hero_bg_color ?: '#0B1E3D';
     $heroImage = $settings->hero_bg_image ? asset('storage/' . $settings->hero_bg_image) : null;
 
-    // Ukuran & posisi foto (diatur dari panel admin).
-    $photoSizeClass = match ($settings->profile_photo_size) {
-        'kecil' => 'max-h-[40vh] lg:max-h-[55vh]',
-        'besar' => 'max-h-[60vh] lg:max-h-[92vh]',
-        'penuh' => 'max-h-[70vh] lg:max-h-screen',
-        default => 'max-h-[52vh] lg:max-h-[80vh]', // sedang
-    };
+    // Ukuran foto (px) & posisi, diatur dari panel admin.
+    $photoMaxPx = (int) ($settings->profile_photo_size ?: 0);
+    // Fallback ukuran otomatis bila px tidak diisi.
+    $photoSizeClass = $photoMaxPx > 0 ? '' : 'max-h-[52vh] lg:max-h-[80vh]';
+    $photoStyle = $photoMaxPx > 0 ? "max-height: {$photoMaxPx}px" : '';
     $photoPosClass = match ($settings->profile_photo_position) {
         'kiri' => 'lg:justify-start',
         'tengah' => 'lg:justify-center',
@@ -63,7 +61,7 @@
         {{-- Kolom foto: tanpa frame, penuh sampai tepi bawah hero --}}
         <div class="flex justify-center self-end lg:h-full lg:items-end {{ $photoPosClass }}">
             @if ($photo)
-                <img src="{{ $photo }}" alt="Muhammad Yani"
+                <img src="{{ $photo }}" alt="Muhammad Yani" @if ($photoStyle) style="{{ $photoStyle }}" @endif
                      class="w-auto {{ $photoSizeClass }} max-w-full object-contain object-bottom drop-shadow-2xl">
             @else
                 <div class="flex h-64 w-48 items-end justify-center text-gold/40 lg:h-[28rem]">

@@ -75,6 +75,7 @@ class ManageSettings extends Page implements HasSchemas
                             ->directory('hero')
                             ->visibility('public')
                             ->maxSize(4096)
+                            ->fetchFileInformation(false)
                             ->helperText('Jika diisi, tampil sebagai latar hero dengan lapisan gelap agar teks terbaca.'),
                     ]),
                 Section::make('Tentang & Nilai')
@@ -129,6 +130,7 @@ class ManageSettings extends Page implements HasSchemas
                             ->visibility('public')
                             ->imageEditor()
                             ->maxSize(2048)
+                            ->fetchFileInformation(false)
                             ->helperText('Upload logo resmi kantor. Jika belum diupload, sistem menampilkan placeholder sementara.'),
                         FileUpload::make('profile_photo')
                             ->label('Foto Profil / Potret')
@@ -139,17 +141,16 @@ class ManageSettings extends Page implements HasSchemas
                             ->imageEditor()
                             ->maxSize(3072)
                             ->columnSpanFull()
+                            ->fetchFileInformation(false)
                             ->helperText('Tampil penuh di bagian Hero & Tentang Kami. Disarankan foto dengan latar transparan (PNG).'),
-                        Select::make('profile_photo_size')
-                            ->label('Ukuran Foto di Hero')
-                            ->options([
-                                'kecil' => 'Kecil',
-                                'sedang' => 'Sedang (default)',
-                                'besar' => 'Besar',
-                                'penuh' => 'Sangat Besar',
-                            ])
-                            ->native(false)
-                            ->placeholder('Sedang (default)'),
+                        TextInput::make('profile_photo_size')
+                            ->label('Ukuran Foto di Hero (px)')
+                            ->numeric()
+                            ->minValue(120)
+                            ->maxValue(1000)
+                            ->suffix('px')
+                            ->placeholder('Otomatis')
+                            ->helperText('Tinggi maksimum foto dalam pixel. Kosongkan untuk ukuran otomatis (menyesuaikan tinggi hero).'),
                         Select::make('profile_photo_position')
                             ->label('Posisi Foto di Hero')
                             ->options([
