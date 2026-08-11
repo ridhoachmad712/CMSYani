@@ -27,6 +27,9 @@ class DatabaseSeeder extends Seeder
             FaqSeeder::class,
             GlossaryTermSeeder::class,
             TaxCalendarEventSeeder::class,
+
+            // Konten DEMO (testimoni & artikel contoh) — HAPUS baris ini sebelum produksi
+            DemoContentSeeder::class,
         ]);
     }
 }
