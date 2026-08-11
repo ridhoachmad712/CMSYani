@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source "../**/*.blade.php";
+@source "../**/*.js";
+@source "../**/*.vue";
+
+/*
+ | Palet & tipografi brand KAP Muhammad Yani.
+ | Token warna di sini otomatis menghasilkan utility Tailwind v4
+ | (mis. bg-navy, text-gold, border-cream). Font dimuat via <link>
+ | di layout publik (resources/views/components/layouts/app.blade.php)
+ | pada Fase 3, dengan font-display: swap.
+*/
+@theme {
+    /* Warna brand */
+    --color-navy: #0B1E3D;
+    --color-navy-secondary: #132A4F;
+    --color-gold: #C9A24B;
+    --color-cream: #F8F6F1;
+
+    /* Tipografi */
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-heading: 'Playfair Display', 'Cormorant', ui-serif, Georgia, Cambria, 'Times New Roman', serif;
+}
