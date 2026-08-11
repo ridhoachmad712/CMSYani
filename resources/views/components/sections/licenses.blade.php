@@ -1,6 +1,6 @@
 @props(['licenses'])
 
-<section id="izin-kualifikasi" class="border-b border-navy/10 bg-white py-16 sm:py-20">
+<section id="izin-kualifikasi" class="bg-white py-14 sm:py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <x-section-heading
             class="reveal"

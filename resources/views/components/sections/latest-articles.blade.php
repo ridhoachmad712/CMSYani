@@ -1,7 +1,7 @@
 @props(['articles'])
 
 @if ($articles->isNotEmpty())
-    <section class="bg-cream py-20 sm:py-24">
+    <section class="border-t border-navy/5 bg-cream py-14 sm:py-20 lg:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="reveal mb-10 flex items-end justify-between">
                 <div>

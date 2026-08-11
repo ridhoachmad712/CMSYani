@@ -1,11 +1,11 @@
-@props(['settings', 'showHeading' => true, 'showForm' => true])
+@props(['settings', 'showHeading' => true, 'showForm' => true, 'bg' => 'bg-cream'])
 
 @php
     $waNumber = preg_replace('/\D/', '', (string) $settings->whatsapp_number);
     $mapQuery = urlencode((string) $settings->address);
 @endphp
 
-<section id="kontak" class="bg-cream py-20 sm:py-24">
+<section id="kontak" class="border-t border-navy/5 {{ $bg }} py-14 sm:py-20 lg:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         @if ($showHeading)
             <x-section-heading

@@ -1,6 +1,6 @@
 @props(['settings'])
 
-<section id="tentang-kami" class="bg-cream py-20 sm:py-24">
+<section id="tentang-kami" class="border-t border-navy/5 bg-white py-14 sm:py-20 lg:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid items-center gap-12 lg:grid-cols-2">
             {{-- Teks --}}

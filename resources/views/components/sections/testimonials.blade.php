@@ -3,7 +3,7 @@
 @if ($testimonials->isNotEmpty())
     <section
         id="testimoni"
-        class="bg-white py-20 sm:py-24"
+        class="border-t border-navy/5 bg-white py-14 sm:py-20 lg:py-24"
         x-data="{
             active: 0,
             gap: 24,

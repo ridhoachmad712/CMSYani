@@ -1,6 +1,6 @@
 @props(['services'])
 
-<section id="layanan" class="bg-cream py-20 sm:py-24">
+<section id="layanan" class="border-t border-navy/5 bg-cream py-14 sm:py-20 lg:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <x-section-heading
             class="reveal"
