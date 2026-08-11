@@ -39,6 +39,73 @@
         </div>
     </section>
 
+    {{-- Profesi & Keahlian --}}
+    <section class="bg-white py-16 sm:py-20">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <x-section-heading eyebrow="Kompetensi" title="Profesi & Keahlian" subtitle="Berpengalaman lintas bidang perpajakan, hukum pajak, akuntansi, dan pendidikan." />
+
+            <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                @foreach ([
+                    ['Konsultan Pajak', 'heroicon-o-clipboard-document-check', 'Konsultasi & kepatuhan perpajakan.'],
+                    ['Kuasa Hukum Pajak', 'heroicon-o-scale', 'Pendampingan & pengacara di bidang pajak.'],
+                    ['Dosen Pajak', 'heroicon-o-academic-cap', 'Pengajar di bidang perpajakan.'],
+                    ['Akuntan', 'heroicon-o-calculator', 'Keahlian akuntansi & pelaporan keuangan.'],
+                ] as [$title, $icon, $desc])
+                    <div class="rounded-2xl border border-navy/10 bg-cream/50 p-6 text-center transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-md">
+                        <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-navy text-gold">
+                            <x-dynamic-component :component="$icon" class="h-7 w-7" />
+                        </div>
+                        <h3 class="font-semibold text-navy">{{ $title }}</h3>
+                        <p class="mt-2 text-sm text-navy/65">{{ $desc }}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{-- Organisasi & Aktivitas Akademik --}}
+    <section class="bg-cream py-16 sm:py-20">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div class="grid gap-6 lg:grid-cols-2">
+                {{-- Organisasi --}}
+                <div class="rounded-2xl border border-navy/10 bg-white p-8 shadow-sm">
+                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold">
+                        <x-heroicon-o-user-group class="h-6 w-6" />
+                    </div>
+                    <h3 class="text-xl font-semibold text-navy">Organisasi & Keanggotaan</h3>
+                    <ul class="mt-4 space-y-3 text-navy/80">
+                        <li class="flex items-start gap-3">
+                            <x-heroicon-s-check-circle class="mt-0.5 h-5 w-5 flex-none text-gold" />
+                            <span><span class="font-medium text-navy">AKP2I</span> (Asosiasi Konsultan Pajak Publik Indonesia) &mdash; Pengurus Daerah Sulawesi Selatan</span>
+                        </li>
+                    </ul>
+                </div>
+
+                {{-- Aktivitas Akademik --}}
+                <div class="rounded-2xl border border-navy/10 bg-white p-8 shadow-sm">
+                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold">
+                        <x-heroicon-o-megaphone class="h-6 w-6" />
+                    </div>
+                    <h3 class="text-xl font-semibold text-navy">Aktivitas Akademik</h3>
+                    <ul class="mt-4 space-y-3 text-navy/80">
+                        <li class="flex items-start gap-3">
+                            <x-heroicon-s-check-circle class="mt-0.5 h-5 w-5 flex-none text-gold" />
+                            <span>Pembicara dan narasumber di berbagai kegiatan perpajakan.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <x-heroicon-s-check-circle class="mt-0.5 h-5 w-5 flex-none text-gold" />
+                            <span>Narasumber workshop kurikulum di perguruan tinggi.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <x-heroicon-s-check-circle class="mt-0.5 h-5 w-5 flex-none text-gold" />
+                            <span>Aktif dalam berbagai kegiatan akademik lainnya.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- Kutipan nilai --}}
     @if ($settings->quote_text)
         <section class="bg-navy py-14">
