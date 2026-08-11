@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
@@ -52,6 +53,16 @@ class ShieldRoleSeeder extends Seeder
 
     public function run(): void
     {
+        // Pastikan permission dari semua Filament Resource sudah ada.
+        // Penting agar `migrate:fresh --seed` self-contained: setelah tabel
+        // permission di-drop, generate ulang dulu sebelum assignment.
+        Artisan::call('shield:generate', [
+            '--all' => true,
+            '--panel' => 'admin',
+            '--option' => 'permissions',
+            '--no-interaction' => true,
+        ]);
+
         app(PermissionRegistrar::class)->forgetCachedPermissions();
 
         $superadmin = Role::firstOrCreate(['name' => 'superadmin', 'guard_name' => 'web']);

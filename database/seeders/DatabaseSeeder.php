@@ -13,8 +13,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            // Role & akses (Fase 0/0B)
             RolesAndSuperAdminSeeder::class,
             ShieldRoleSeeder::class,
+
+            // Konten inti dari brosur (Fase 1)
+            ServiceSeeder::class,
+            LicenseSeeder::class,
+            SiteSettingSeeder::class,
         ]);
     }
 }
