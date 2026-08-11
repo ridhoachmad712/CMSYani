@@ -22,7 +22,17 @@ class SiteSetting extends Model
         'whatsapp_number',
         'logo_path',
         'profile_photo',
+        'hero_bg_color',
+        'hero_bg_image',
+        'logo_height',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'logo_height' => 'integer',
+        ];
+    }
 
     /**
      * Ambil satu-satunya baris pengaturan situs (single-record).

@@ -3,16 +3,23 @@
 @php
     $waNumber = preg_replace('/\D/', '', (string) $settings->whatsapp_number);
     $photo = $settings->profile_photo ? asset('storage/' . $settings->profile_photo) : null;
+    $heroColor = $settings->hero_bg_color ?: '#0B1E3D';
+    $heroImage = $settings->hero_bg_image ? asset('storage/' . $settings->hero_bg_image) : null;
 @endphp
 
-<section id="beranda" class="relative overflow-hidden bg-navy text-cream">
-    {{-- Aksen dekoratif --}}
-    <div class="pointer-events-none absolute inset-0 opacity-20"
-         style="background-image: radial-gradient(circle at 15% 15%, #C9A24B 0, transparent 38%), radial-gradient(circle at 85% 10%, #132A4F 0, transparent 45%);"></div>
+<section id="beranda" class="relative overflow-hidden text-cream" style="background-color: {{ $heroColor }};">
+    {{-- Latar --}}
+    @if ($heroImage)
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ $heroImage }}');"></div>
+        <div class="absolute inset-0" style="background: linear-gradient(90deg, {{ $heroColor }} 0%, {{ $heroColor }}e6 45%, {{ $heroColor }}80 100%);"></div>
+    @else
+        <div class="pointer-events-none absolute inset-0 opacity-20"
+             style="background-image: radial-gradient(circle at 15% 15%, #C9A24B 0, transparent 38%), radial-gradient(circle at 85% 10%, #132A4F 0, transparent 45%);"></div>
+    @endif
 
-    <div class="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 sm:py-24 lg:grid-cols-2 lg:px-8">
+    <div class="relative mx-auto grid max-w-7xl items-end gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
         {{-- Kolom teks --}}
-        <div class="max-w-2xl">
+        <div class="max-w-2xl py-16 sm:py-20 lg:py-28">
             <span class="mb-4 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-sm font-medium text-gold">
                 <x-heroicon-s-check-badge class="h-4 w-4" />
                 Terdaftar &amp; Berizin Resmi
@@ -40,22 +47,16 @@
             </div>
         </div>
 
-        {{-- Kolom visual: foto profil, dengan placeholder elegan bila belum diupload --}}
-        <div class="relative">
-            <div class="relative mx-auto max-w-sm">
-                <div class="absolute -inset-3 rounded-3xl border border-gold/30"></div>
-                @if ($photo)
-                    <img src="{{ $photo }}" alt="Muhammad Yani" class="relative aspect-[3/4] w-full rounded-2xl object-cover shadow-2xl">
-                @else
-                    <div class="relative flex aspect-[3/4] w-full flex-col items-center justify-center rounded-2xl bg-navy-secondary/60 shadow-2xl">
-                        <span class="flex h-24 w-24 items-center justify-center rounded-full border-2 border-gold/40 text-gold">
-                            <x-heroicon-o-user class="h-12 w-12" />
-                        </span>
-                        <p class="mt-5 font-heading text-xl text-cream">Muhammad Yani</p>
-                        <p class="mt-1 text-xs uppercase tracking-widest text-gold/80">Konsultan Pajak</p>
-                    </div>
-                @endif
-            </div>
+        {{-- Kolom foto: tanpa frame, penuh sampai tepi bawah hero --}}
+        <div class="flex justify-center self-end lg:h-full lg:items-end lg:justify-end">
+            @if ($photo)
+                <img src="{{ $photo }}" alt="Muhammad Yani"
+                     class="w-auto max-h-[52vh] max-w-full object-contain object-bottom drop-shadow-2xl sm:max-h-[60vh] lg:max-h-[85vh]">
+            @else
+                <div class="flex h-64 w-48 items-end justify-center text-gold/40 lg:h-[28rem]">
+                    <x-heroicon-o-user class="h-40 w-40" />
+                </div>
+            @endif
         </div>
     </div>
 </section>

@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Models\SiteSetting;
 use BackedEnum;
+use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -63,6 +64,17 @@ class ManageSettings extends Page implements HasSchemas
                             ->label('Sub-judul Hero')
                             ->rows(2)
                             ->columnSpanFull(),
+                        ColorPicker::make('hero_bg_color')
+                            ->label('Warna Latar Hero')
+                            ->helperText('Kosongkan untuk memakai warna navy default. Pilih warna gelap agar teks tetap terbaca.'),
+                        FileUpload::make('hero_bg_image')
+                            ->label('Gambar Latar Hero (opsional)')
+                            ->image()
+                            ->disk('public')
+                            ->directory('hero')
+                            ->visibility('public')
+                            ->maxSize(4096)
+                            ->helperText('Jika diisi, tampil sebagai latar hero dengan lapisan gelap agar teks terbaca.'),
                     ]),
                 Section::make('Tentang & Nilai')
                     ->schema([
@@ -124,9 +136,15 @@ class ManageSettings extends Page implements HasSchemas
                             ->directory('profile')
                             ->visibility('public')
                             ->imageEditor()
-                            ->imageEditorAspectRatios(['3:4', '1:1'])
                             ->maxSize(3072)
-                            ->helperText('Tampil di bagian Hero & Tentang Kami. Jika kosong, ditampilkan kartu izin sebagai gantinya.'),
+                            ->helperText('Tampil penuh di bagian Hero & Tentang Kami. Disarankan foto dengan latar transparan (PNG).'),
+                        TextInput::make('logo_height')
+                            ->label('Tinggi Logo di Navbar (px)')
+                            ->numeric()
+                            ->minValue(24)
+                            ->maxValue(120)
+                            ->placeholder('44')
+                            ->helperText('Kosongkan untuk ukuran default (44px).'),
                     ]),
             ]);
     }

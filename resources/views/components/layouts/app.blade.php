@@ -13,6 +13,7 @@
     $logo = $settings->logo_path
         ? asset('storage/' . $settings->logo_path)
         : asset('images/logo-placeholder.svg');
+    $logoHeight = $settings->logo_height ?: 44;
     $waNumber = preg_replace('/\D/', '', (string) $settings->whatsapp_number);
 @endphp
 <!DOCTYPE html>
@@ -48,18 +49,18 @@
     <header
         x-data="{ open: false, scrolled: false }"
         x-init="scrolled = window.scrollY > 10; window.addEventListener('scroll', () => scrolled = window.scrollY > 10)"
-        class="sticky top-0 z-50 transition-colors duration-300"
-        :class="scrolled ? 'bg-navy/95 backdrop-blur shadow-lg' : 'bg-navy'"
+        class="sticky top-0 z-50 border-b border-navy/10 bg-white transition-shadow duration-300"
+        :class="scrolled ? 'shadow-md' : 'shadow-sm'"
     >
         <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
             <a href="{{ url('/') }}" class="flex items-center gap-3">
-                <img src="{{ $logo }}" alt="Logo KAP Muhammad Yani" class="h-11 w-auto">
+                <img src="{{ $logo }}" alt="Logo KAP Muhammad Yani" class="w-auto" style="height: {{ $logoHeight }}px">
                 <span class="sr-only">KAP Muhammad Yani</span>
             </a>
 
             {{-- Nav desktop --}}
             @php
-                $navLink = fn (bool $active) => 'text-sm font-medium transition hover:text-gold ' . ($active ? 'text-gold' : 'text-cream/90');
+                $navLink = fn (bool $active) => 'text-sm font-medium transition hover:text-gold-dark ' . ($active ? 'text-gold-dark' : 'text-navy/80');
             @endphp
             <nav class="hidden items-center gap-7 md:flex">
                 <a href="{{ url('/') }}" class="{{ $navLink(request()->routeIs('home')) }}">Beranda</a>
@@ -73,7 +74,7 @@
                         Info Pajak
                         <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
                     </button>
-                    <div x-show="open" x-cloak x-transition class="absolute left-0 top-full z-50 w-52 rounded-xl border border-white/10 bg-navy py-2 shadow-xl">
+                    <div x-show="open" x-cloak x-transition class="absolute left-0 top-full z-50 w-52 rounded-xl border border-navy/10 bg-white py-2 shadow-xl">
                         @foreach ([
                             'Artikel' => route('articles.index'),
                             'FAQ' => route('faq'),
@@ -81,7 +82,7 @@
                             'Glosarium' => route('glossary'),
                             'Unduhan' => route('downloads'),
                         ] as $label => $href)
-                            <a href="{{ $href }}" class="block px-4 py-2 text-sm text-cream/90 transition hover:bg-white/5 hover:text-gold">{{ $label }}</a>
+                            <a href="{{ $href }}" class="block px-4 py-2 text-sm text-navy/80 transition hover:bg-cream hover:text-gold-dark">{{ $label }}</a>
                         @endforeach
                     </div>
                 </div>
@@ -94,7 +95,7 @@
             {{-- Toggle mobile --}}
             <button
                 @click="open = !open"
-                class="inline-flex items-center justify-center rounded-md p-2 text-cream md:hidden"
+                class="inline-flex items-center justify-center rounded-md p-2 text-navy md:hidden"
                 aria-label="Buka menu"
             >
                 <svg x-show="!open" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" /></svg>
@@ -103,7 +104,7 @@
         </div>
 
         {{-- Nav mobile --}}
-        <nav x-show="open" x-cloak x-transition class="border-t border-white/10 bg-navy md:hidden">
+        <nav x-show="open" x-cloak x-transition class="border-t border-navy/10 bg-white md:hidden">
             <div class="space-y-1 px-4 py-3">
                 @foreach ([
                     'Beranda' => url('/'),
@@ -112,10 +113,10 @@
                     'Tentang Kami' => route('about'),
                     'Kontak' => route('contact'),
                 ] as $label => $href)
-                    <a href="{{ $href }}" @click="open = false" class="block rounded px-3 py-2 text-cream/90 transition hover:bg-white/5 hover:text-gold">{{ $label }}</a>
+                    <a href="{{ $href }}" @click="open = false" class="block rounded px-3 py-2 text-navy/80 transition hover:bg-cream hover:text-gold-dark">{{ $label }}</a>
                 @endforeach
 
-                <p class="px-3 pb-1 pt-3 text-xs font-semibold uppercase tracking-wide text-cream/50">Info Pajak</p>
+                <p class="px-3 pb-1 pt-3 text-xs font-semibold uppercase tracking-wide text-navy/40">Info Pajak</p>
                 @foreach ([
                     'Artikel' => route('articles.index'),
                     'FAQ' => route('faq'),
@@ -123,7 +124,7 @@
                     'Glosarium' => route('glossary'),
                     'Unduhan' => route('downloads'),
                 ] as $label => $href)
-                    <a href="{{ $href }}" @click="open = false" class="block rounded px-3 py-2 text-cream/90 transition hover:bg-white/5 hover:text-gold">{{ $label }}</a>
+                    <a href="{{ $href }}" @click="open = false" class="block rounded px-3 py-2 text-navy/80 transition hover:bg-cream hover:text-gold-dark">{{ $label }}</a>
                 @endforeach
 
                 <a href="{{ route('contact') }}" @click="open = false" class="mt-2 block rounded-full bg-gold px-4 py-2 text-center font-semibold text-navy">Konsultasi Sekarang</a>
