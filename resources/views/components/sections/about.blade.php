@@ -15,6 +15,10 @@
                     @empty
                     @endforelse
                 </div>
+
+                <div class="mt-8">
+                    <x-btn :href="route('about')" variant="outline-dark">Selengkapnya Tentang Kami</x-btn>
+                </div>
             </div>
 
             {{-- Kartu kutipan nilai --}}

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\InfoPajakController;
+use App\Http\Controllers\PageController;
 use App\Models\Article;
 use App\Models\License;
 use App\Models\Service;
@@ -21,6 +22,13 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
+// Halaman utama (page tersendiri, lebih detail)
+Route::get('/layanan', [PageController::class, 'services'])->name('services.index');
+Route::get('/layanan/{slug}', [PageController::class, 'serviceShow'])->name('services.show');
+Route::get('/izin', [PageController::class, 'licenses'])->name('licenses');
+Route::get('/tentang', [PageController::class, 'about'])->name('about');
+Route::get('/kontak', [PageController::class, 'contact'])->name('contact');
+
 // Artikel / Blog Pajak
 Route::get('/artikel', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/artikel/{slug}', [ArticleController::class, 'show'])->name('articles.show');
@@ -36,11 +44,21 @@ Route::get('/unduhan/{download}/berkas', [InfoPajakController::class, 'downloadF
 Route::get('/sitemap.xml', function () {
     $sitemap = Sitemap::create()
         ->add(Url::create(route('home'))->setPriority(1.0))
+        ->add(Url::create(route('services.index'))->setPriority(0.9))
+        ->add(Url::create(route('about'))->setPriority(0.8))
+        ->add(Url::create(route('licenses'))->setPriority(0.7))
+        ->add(Url::create(route('contact'))->setPriority(0.8))
         ->add(Url::create(route('articles.index'))->setPriority(0.8))
         ->add(Url::create(route('faq'))->setPriority(0.6))
         ->add(Url::create(route('tax-calendar'))->setPriority(0.6))
         ->add(Url::create(route('glossary'))->setPriority(0.6))
         ->add(Url::create(route('downloads'))->setPriority(0.6));
+
+    Service::query()->where('is_active', true)->orderBy('order')->get()->each(
+        fn (Service $service) => $sitemap->add(
+            Url::create(route('services.show', $service->slug))->setPriority(0.6)
+        )
+    );
 
     Article::query()->published()->latest('published_at')->get()->each(
         fn (Article $article) => $sitemap->add(

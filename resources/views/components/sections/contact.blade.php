@@ -1,4 +1,4 @@
-@props(['settings'])
+@props(['settings', 'showHeading' => true])
 
 @php
     $waNumber = preg_replace('/\D/', '', (string) $settings->whatsapp_number);
@@ -7,11 +7,13 @@
 
 <section id="kontak" class="bg-cream py-20 sm:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <x-section-heading
-            class="reveal"
-            eyebrow="Konsultasi"
-            title="Hubungi Kami"
-            subtitle="Sampaikan kebutuhan perpajakan Anda. Kami siap membantu memberikan solusi terbaik." />
+        @if ($showHeading)
+            <x-section-heading
+                class="reveal"
+                eyebrow="Konsultasi"
+                title="Hubungi Kami"
+                subtitle="Sampaikan kebutuhan perpajakan Anda. Kami siap membantu memberikan solusi terbaik." />
+        @endif
 
         <div class="mt-14 grid gap-10 lg:grid-cols-2">
             {{-- Info kontak + peta --}}

@@ -30,5 +30,9 @@
                 </div>
             @endforeach
         </div>
+
+        <div class="mt-12 text-center">
+            <x-btn :href="route('services.index')" variant="outline-dark">Lihat Semua Layanan</x-btn>
+        </div>
     </div>
 </section>
