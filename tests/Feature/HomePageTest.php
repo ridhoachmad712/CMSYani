@@ -34,7 +34,16 @@ class HomePageTest extends TestCase
         $response->assertSee('Konsultasi Pajak');
         $response->assertSee('Izin &amp; Kualifikasi', false);
         $response->assertSee('KP-1145/IP.A/2026');
-        $response->assertSee('Form Konsultasi');
+        // Halaman depan: kontak menampilkan info + peta, TANPA form konsultasi
+        $response->assertSee('Hubungi Kami');
+        $response->assertDontSee('Form Konsultasi');
+    }
+
+    public function test_halaman_kontak_memiliki_form_konsultasi(): void
+    {
+        $this->get('/kontak')
+            ->assertSuccessful()
+            ->assertSee('Form Konsultasi');
     }
 
     public function test_hanya_layanan_aktif_yang_tampil(): void
