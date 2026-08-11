@@ -51,18 +51,33 @@
             </a>
 
             {{-- Nav desktop --}}
-            <nav class="hidden items-center gap-8 md:flex">
-                @foreach ([
-                    'Beranda' => url('/'),
-                    'Layanan' => '#layanan',
-                    'Izin' => '#izin-kualifikasi',
-                    'Tentang' => '#tentang-kami',
-                    'Kontak' => '#kontak',
-                ] as $label => $href)
-                    <a href="{{ $href }}" class="text-sm font-medium text-cream/90 transition hover:text-gold">{{ $label }}</a>
-                @endforeach
-                <a href="#kontak" class="rounded-full bg-gold px-5 py-2 text-sm font-semibold text-navy shadow transition hover:bg-gold/90">
-                    Konsultasi Sekarang
+            <nav class="hidden items-center gap-7 md:flex">
+                <a href="{{ url('/') }}" class="text-sm font-medium text-cream/90 transition hover:text-gold">Beranda</a>
+                <a href="{{ url('/#layanan') }}" class="text-sm font-medium text-cream/90 transition hover:text-gold">Layanan</a>
+                <a href="{{ url('/#izin-kualifikasi') }}" class="text-sm font-medium text-cream/90 transition hover:text-gold">Izin</a>
+
+                {{-- Dropdown Info Pajak --}}
+                <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
+                    <button @click="open = !open" class="flex items-center gap-1 text-sm font-medium text-cream/90 transition hover:text-gold">
+                        Info Pajak
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+                    </button>
+                    <div x-show="open" x-cloak x-transition class="absolute left-0 top-full z-50 w-52 rounded-xl border border-white/10 bg-navy py-2 shadow-xl">
+                        @foreach ([
+                            'Artikel' => route('articles.index'),
+                            'FAQ' => route('faq'),
+                            'Kalender Pajak' => route('tax-calendar'),
+                            'Glosarium' => route('glossary'),
+                            'Unduhan' => route('downloads'),
+                        ] as $label => $href)
+                            <a href="{{ $href }}" class="block px-4 py-2 text-sm text-cream/90 transition hover:bg-white/5 hover:text-gold">{{ $label }}</a>
+                        @endforeach
+                    </div>
+                </div>
+
+                <a href="{{ url('/#tentang-kami') }}" class="text-sm font-medium text-cream/90 transition hover:text-gold">Tentang</a>
+                <a href="{{ url('/#kontak') }}" class="rounded-full bg-gold px-5 py-2 text-sm font-semibold text-navy shadow transition hover:bg-gold/90">
+                    Konsultasi
                 </a>
             </nav>
 
@@ -82,14 +97,26 @@
             <div class="space-y-1 px-4 py-3">
                 @foreach ([
                     'Beranda' => url('/'),
-                    'Layanan' => '#layanan',
-                    'Izin & Kualifikasi' => '#izin-kualifikasi',
-                    'Tentang Kami' => '#tentang-kami',
-                    'Kontak' => '#kontak',
+                    'Layanan' => url('/#layanan'),
+                    'Izin & Kualifikasi' => url('/#izin-kualifikasi'),
+                    'Tentang Kami' => url('/#tentang-kami'),
+                    'Kontak' => url('/#kontak'),
                 ] as $label => $href)
                     <a href="{{ $href }}" @click="open = false" class="block rounded px-3 py-2 text-cream/90 transition hover:bg-white/5 hover:text-gold">{{ $label }}</a>
                 @endforeach
-                <a href="#kontak" @click="open = false" class="mt-2 block rounded-full bg-gold px-4 py-2 text-center font-semibold text-navy">Konsultasi Sekarang</a>
+
+                <p class="px-3 pb-1 pt-3 text-xs font-semibold uppercase tracking-wide text-cream/50">Info Pajak</p>
+                @foreach ([
+                    'Artikel' => route('articles.index'),
+                    'FAQ' => route('faq'),
+                    'Kalender Pajak' => route('tax-calendar'),
+                    'Glosarium' => route('glossary'),
+                    'Unduhan' => route('downloads'),
+                ] as $label => $href)
+                    <a href="{{ $href }}" @click="open = false" class="block rounded px-3 py-2 text-cream/90 transition hover:bg-white/5 hover:text-gold">{{ $label }}</a>
+                @endforeach
+
+                <a href="{{ url('/#kontak') }}" @click="open = false" class="mt-2 block rounded-full bg-gold px-4 py-2 text-center font-semibold text-navy">Konsultasi Sekarang</a>
             </div>
         </nav>
     </header>
@@ -104,6 +131,11 @@
             <div>
                 <img src="{{ $logo }}" alt="Logo KAP Muhammad Yani" class="mb-4 h-12 w-auto">
                 <p class="text-sm leading-relaxed">Kantor Konsultan Pajak dan Kuasa Hukum Pajak Muhammad Yani. {{ $settings->tagline }}</p>
+
+                <div class="mt-6">
+                    <p class="mb-2 text-sm font-semibold text-gold">Info Pajak Terbaru</p>
+                    @livewire('newsletter-form')
+                </div>
             </div>
             <div>
                 <h3 class="mb-3 text-base font-semibold text-gold">Kontak</h3>
@@ -122,10 +154,12 @@
             <div>
                 <h3 class="mb-3 text-base font-semibold text-gold">Tautan</h3>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="#layanan" class="hover:text-gold">Layanan</a></li>
-                    <li><a href="#izin-kualifikasi" class="hover:text-gold">Izin & Kualifikasi</a></li>
-                    <li><a href="#tentang-kami" class="hover:text-gold">Tentang Kami</a></li>
-                    <li><a href="#kontak" class="hover:text-gold">Kontak</a></li>
+                    <li><a href="{{ url('/#layanan') }}" class="hover:text-gold">Layanan</a></li>
+                    <li><a href="{{ url('/#izin-kualifikasi') }}" class="hover:text-gold">Izin & Kualifikasi</a></li>
+                    <li><a href="{{ route('articles.index') }}" class="hover:text-gold">Artikel</a></li>
+                    <li><a href="{{ route('faq') }}" class="hover:text-gold">FAQ</a></li>
+                    <li><a href="{{ route('glossary') }}" class="hover:text-gold">Glosarium</a></li>
+                    <li><a href="{{ url('/#kontak') }}" class="hover:text-gold">Kontak</a></li>
                     @if ($settings->instagram_url)
                         <li><a href="{{ $settings->instagram_url }}" target="_blank" rel="noopener" class="hover:text-gold">Instagram</a></li>
                     @endif
