@@ -3,12 +3,12 @@
 @if ($testimonials->isNotEmpty())
     <section id="testimoni" class="bg-white py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="mx-auto max-w-2xl text-center">
+            <div class="reveal mx-auto max-w-2xl text-center">
                 <h2 class="text-3xl font-bold text-navy sm:text-4xl">Apa Kata Klien</h2>
                 <div class="mx-auto mt-3 h-1 w-20 rounded bg-gold"></div>
             </div>
 
-            <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="reveal mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($testimonials as $testimonial)
                     <figure class="flex flex-col rounded-2xl border border-navy/10 bg-cream p-7 shadow-sm">
                         @if ($testimonial->rating)

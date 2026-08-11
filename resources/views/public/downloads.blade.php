@@ -19,7 +19,7 @@
                                             <p class="mt-1 text-sm text-navy/65">{{ $download->description }}</p>
                                         @endif
                                         <a href="{{ route('downloads.file', $download) }}"
-                                           class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-gold hover:underline">
+                                           class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-gold-dark hover:underline">
                                             Unduh <x-heroicon-o-arrow-down-tray class="h-4 w-4" />
                                         </a>
                                     </div>

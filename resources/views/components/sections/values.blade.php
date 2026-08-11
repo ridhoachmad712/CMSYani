@@ -9,7 +9,7 @@
 
 <section class="bg-white py-16">
     <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div class="grid gap-8 sm:grid-cols-3">
+        <div class="reveal grid gap-8 sm:grid-cols-3">
             @foreach ($values as $value)
                 <div class="text-center">
                     <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-navy text-gold">

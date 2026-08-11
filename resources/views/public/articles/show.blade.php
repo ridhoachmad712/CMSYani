@@ -5,7 +5,7 @@
         <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <div class="mb-6 flex flex-wrap items-center gap-3 text-sm text-navy/60">
                 @if ($article->category)
-                    <span class="rounded-full bg-gold/15 px-3 py-0.5 font-medium text-gold">{{ $article->category->name }}</span>
+                    <span class="rounded-full bg-gold/15 px-3 py-0.5 font-medium text-gold-dark">{{ $article->category->name }}</span>
                 @endif
                 <span>{{ $article->author_name }}</span>
                 <span>&middot;</span>
@@ -21,7 +21,7 @@
             </div>
 
             <div class="mt-10 border-t border-navy/10 pt-6">
-                <a href="{{ route('articles.index') }}" class="text-sm font-medium text-gold hover:underline">&larr; Kembali ke daftar artikel</a>
+                <a href="{{ route('articles.index') }}" class="text-sm font-medium text-gold-dark hover:underline">&larr; Kembali ke daftar artikel</a>
             </div>
         </div>
 

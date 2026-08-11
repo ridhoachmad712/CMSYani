@@ -18,6 +18,8 @@
     --color-navy: #0B1E3D;
     --color-navy-secondary: #132A4F;
     --color-gold: #C9A24B;
+    /* Varian emas lebih gelap untuk TEKS di atas latar terang (kontras AA >= 4.5). */
+    --color-gold-dark: #8A6D28;
     --color-cream: #F8F6F1;
 
     /* Tipografi */
@@ -43,15 +45,25 @@
     }
 }
 
-/* Animasi ringan fade-in saat scroll (dipicu Alpine di komponen). */
+/*
+ | Animasi ringan fade-in saat scroll.
+ | Digerbang di bawah .js: tanpa JavaScript konten tetap tampil penuh.
+*/
 @layer utilities {
-    .reveal {
+    .js .reveal {
         opacity: 0;
         transform: translateY(1rem);
         transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
-    .reveal.is-visible {
+    .js .reveal.is-visible {
         opacity: 1;
         transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .js .reveal {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
     }
 }

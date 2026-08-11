@@ -7,7 +7,7 @@
 
 <section id="kontak" class="bg-cream py-20 sm:py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center">
+        <div class="reveal mx-auto max-w-2xl text-center">
             <h2 class="text-3xl font-bold text-navy sm:text-4xl">Hubungi Kami</h2>
             <div class="mx-auto mt-3 h-1 w-20 rounded bg-gold"></div>
             <p class="mt-4 text-navy/70">

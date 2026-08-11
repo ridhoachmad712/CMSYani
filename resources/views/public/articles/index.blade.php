@@ -37,15 +37,15 @@
                             @endif
                             <div class="flex flex-1 flex-col p-6">
                                 @if ($article->category)
-                                    <span class="mb-2 self-start rounded-full bg-gold/15 px-3 py-0.5 text-xs font-medium text-gold">{{ $article->category->name }}</span>
+                                    <span class="mb-2 self-start rounded-full bg-gold/15 px-3 py-0.5 text-xs font-medium text-gold-dark">{{ $article->category->name }}</span>
                                 @endif
                                 <h2 class="text-lg font-semibold text-navy">
-                                    <a href="{{ route('articles.show', $article->slug) }}" class="hover:text-gold">{{ $article->title }}</a>
+                                    <a href="{{ route('articles.show', $article->slug) }}" class="hover:text-gold-dark">{{ $article->title }}</a>
                                 </h2>
                                 <p class="mt-2 flex-1 text-sm text-navy/70">{{ \Illuminate\Support\Str::limit($article->excerpt, 120) }}</p>
                                 <div class="mt-4 flex items-center justify-between text-xs text-navy/50">
                                     <span>{{ optional($article->published_at ?? $article->created_at)->translatedFormat('d M Y') }}</span>
-                                    <a href="{{ route('articles.show', $article->slug) }}" class="font-medium text-gold hover:underline">Baca &rarr;</a>
+                                    <a href="{{ route('articles.show', $article->slug) }}" class="font-medium text-gold-dark hover:underline">Baca &rarr;</a>
                                 </div>
                             </div>
                         </article>
