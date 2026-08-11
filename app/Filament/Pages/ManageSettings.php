@@ -6,6 +6,7 @@ use App\Models\SiteSetting;
 use BackedEnum;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
@@ -137,7 +138,27 @@ class ManageSettings extends Page implements HasSchemas
                             ->visibility('public')
                             ->imageEditor()
                             ->maxSize(3072)
+                            ->columnSpanFull()
                             ->helperText('Tampil penuh di bagian Hero & Tentang Kami. Disarankan foto dengan latar transparan (PNG).'),
+                        Select::make('profile_photo_size')
+                            ->label('Ukuran Foto di Hero')
+                            ->options([
+                                'kecil' => 'Kecil',
+                                'sedang' => 'Sedang (default)',
+                                'besar' => 'Besar',
+                                'penuh' => 'Sangat Besar',
+                            ])
+                            ->native(false)
+                            ->placeholder('Sedang (default)'),
+                        Select::make('profile_photo_position')
+                            ->label('Posisi Foto di Hero')
+                            ->options([
+                                'kiri' => 'Kiri',
+                                'tengah' => 'Tengah',
+                                'kanan' => 'Kanan (default)',
+                            ])
+                            ->native(false)
+                            ->placeholder('Kanan (default)'),
                         TextInput::make('logo_height')
                             ->label('Tinggi Logo di Navbar (px)')
                             ->numeric()

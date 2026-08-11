@@ -22,6 +22,8 @@ class SiteSetting extends Model
         'whatsapp_number',
         'logo_path',
         'profile_photo',
+        'profile_photo_size',
+        'profile_photo_position',
         'hero_bg_color',
         'hero_bg_image',
         'logo_height',
