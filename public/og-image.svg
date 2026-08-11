@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1E3D"/>
+      <stop offset="1" stop-color="#132A4F"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DDBB6A"/>
+      <stop offset="1" stop-color="#C9A24B"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="120" cy="120" r="260" fill="#C9A24B" opacity="0.06"/>
+  <circle cx="1080" cy="560" r="220" fill="#C9A24B" opacity="0.05"/>
+
+  <!-- Monogram -->
+  <rect x="90" y="250" width="130" height="130" rx="20" fill="none" stroke="url(#gold)" stroke-width="3"/>
+  <text x="155" y="345" text-anchor="middle" font-family="Georgia, serif" font-size="70" font-weight="700" fill="url(#gold)">MY</text>
+
+  <!-- Teks -->
+  <text x="260" y="285" font-family="Georgia, serif" font-size="30" fill="#C9A24B" letter-spacing="2">KONSULTAN PAJAK &amp; KUASA HUKUM PAJAK</text>
+  <text x="258" y="360" font-family="Georgia, serif" font-size="72" font-weight="700" fill="#F8F6F1">Muhammad Yani</text>
+  <text x="260" y="420" font-family="Arial, sans-serif" font-size="34" fill="#F8F6F1" opacity="0.85">Solusi Tepat Kepatuhan Hemat</text>
+
+  <rect x="260" y="450" width="90" height="4" rx="2" fill="url(#gold)"/>
+  <text x="260" y="505" font-family="Arial, sans-serif" font-size="24" fill="#F8F6F1" opacity="0.6">Solusi profesional untuk kepatuhan pajak dan perlindungan hukum bisnis Anda.</text>
+</svg>

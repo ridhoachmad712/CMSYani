@@ -105,7 +105,8 @@ class ManageSettings extends Page implements HasSchemas
                             ->placeholder('https://instagram.com/...')
                             ->columnSpanFull(),
                     ]),
-                Section::make('Logo')
+                Section::make('Logo & Foto')
+                    ->columns(2)
                     ->schema([
                         FileUpload::make('logo_path')
                             ->label('Logo Kantor')
@@ -116,6 +117,16 @@ class ManageSettings extends Page implements HasSchemas
                             ->imageEditor()
                             ->maxSize(2048)
                             ->helperText('Upload logo resmi kantor. Jika belum diupload, sistem menampilkan placeholder sementara.'),
+                        FileUpload::make('profile_photo')
+                            ->label('Foto Profil / Potret')
+                            ->image()
+                            ->disk('public')
+                            ->directory('profile')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->imageEditorAspectRatios(['3:4', '1:1'])
+                            ->maxSize(3072)
+                            ->helperText('Tampil di bagian Hero & Tentang Kami. Jika kosong, ditampilkan kartu izin sebagai gantinya.'),
                     ]),
             ]);
     }

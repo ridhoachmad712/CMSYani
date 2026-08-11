@@ -21,6 +21,7 @@ class SiteSetting extends Model
         'instagram_url',
         'whatsapp_number',
         'logo_path',
+        'profile_photo',
     ];
 
     /**
