@@ -6,5 +6,5 @@
     <x-sections.values />
     <x-sections.testimonials :testimonials="$testimonials" />
     <x-sections.latest-articles :articles="$latestArticles" />
-    <x-sections.contact :settings="$settings" />
+    <x-sections.contact :settings="$settings" :show-form="false" />
 </x-layouts.app>

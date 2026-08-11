@@ -1,4 +1,4 @@
-@props(['settings', 'showHeading' => true])
+@props(['settings', 'showHeading' => true, 'showForm' => true])
 
 @php
     $waNumber = preg_replace('/\D/', '', (string) $settings->whatsapp_number);
@@ -12,12 +12,12 @@
                 class="reveal"
                 eyebrow="Konsultasi"
                 title="Hubungi Kami"
-                subtitle="Sampaikan kebutuhan perpajakan Anda. Kami siap membantu memberikan solusi terbaik." />
+                subtitle="{{ $showForm ? 'Sampaikan kebutuhan perpajakan Anda. Kami siap membantu memberikan solusi terbaik.' : 'Kunjungi kantor kami atau hubungi melalui kontak di bawah ini.' }}" />
         @endif
 
-        <div class="mt-14 grid gap-10 lg:grid-cols-2">
+        <div class="mt-14 grid gap-10 {{ $showForm ? 'lg:grid-cols-2' : '' }}">
             {{-- Info kontak + peta --}}
-            <div>
+            <div class="{{ $showForm ? '' : 'grid items-start gap-10 lg:grid-cols-2' }}">
                 <ul class="space-y-5">
                     @if ($settings->address)
                         <li class="flex gap-4">
@@ -48,20 +48,22 @@
                 </ul>
 
                 @if ($settings->address)
-                    <div class="mt-8 overflow-hidden rounded-2xl border border-navy/10 shadow-sm">
+                    <div class="mt-8 overflow-hidden rounded-2xl border border-navy/10 shadow-sm {{ $showForm ? '' : 'lg:mt-0' }}">
                         <iframe
                             src="https://www.google.com/maps?q={{ $mapQuery }}&output=embed"
-                            width="100%" height="280" style="border:0;" allowfullscreen loading="lazy"
+                            width="100%" height="{{ $showForm ? 280 : 320 }}" style="border:0;" allowfullscreen loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade" title="Peta lokasi kantor"></iframe>
                     </div>
                 @endif
             </div>
 
             {{-- Form konsultasi (Livewire) --}}
-            <div class="rounded-2xl border border-navy/10 bg-white p-6 shadow-sm sm:p-8">
-                <h3 class="mb-6 text-xl font-semibold text-navy">Form Konsultasi</h3>
-                @livewire('contact-form')
-            </div>
+            @if ($showForm)
+                <div class="rounded-2xl border border-navy/10 bg-white p-6 shadow-sm sm:p-8">
+                    <h3 class="mb-6 text-xl font-semibold text-navy">Form Konsultasi</h3>
+                    @livewire('contact-form')
+                </div>
+            @endif
         </div>
     </div>
 </section>
