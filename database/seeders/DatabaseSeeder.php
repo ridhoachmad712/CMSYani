@@ -21,6 +21,12 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             LicenseSeeder::class,
             SiteSettingSeeder::class,
+
+            // Konten edukasi pajak (Fase 3B) — FAQ/glosarium/kalender berstatus DRAFT
+            ArticleCategorySeeder::class,
+            FaqSeeder::class,
+            GlossaryTermSeeder::class,
+            TaxCalendarEventSeeder::class,
         ]);
     }
 }
