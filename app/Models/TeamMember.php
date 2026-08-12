@@ -10,8 +10,10 @@ class TeamMember extends Model
     protected $fillable = [
         'name',
         'role',
+        'slug',
         'photo',
         'bio',
+        'detail',
         'email',
         'linkedin_url',
         'order',
@@ -29,5 +31,10 @@ class TeamMember extends Model
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('is_active', true);
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 }

@@ -64,4 +64,30 @@ class TeamMemberTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_halaman_profil_anggota_tim_tampil(): void
+    {
+        $this->get('/tim/muhammad-yani')
+            ->assertSuccessful()
+            ->assertSee('Managing Partner', false)
+            ->assertSee('memimpin KAP Muhammad Yani', false) // dari kolom detail (rich)
+            ->assertSee('Anggota Tim Lainnya');
+    }
+
+    public function test_kartu_tim_menaut_ke_halaman_profil(): void
+    {
+        $this->get('/')->assertSee(route('team.show', 'muhammad-yani'), false);
+    }
+
+    public function test_profil_anggota_nonaktif_404(): void
+    {
+        TeamMember::create([
+            'name' => 'Anggota Nonaktif',
+            'slug' => 'anggota-nonaktif',
+            'role' => 'Junior',
+            'is_active' => false,
+        ]);
+
+        $this->get('/tim/anggota-nonaktif')->assertNotFound();
+    }
 }

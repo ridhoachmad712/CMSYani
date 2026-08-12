@@ -51,6 +51,23 @@ class PageController extends Controller
         ]);
     }
 
+    public function teamShow(string $slug)
+    {
+        $member = TeamMember::query()->active()->where('slug', $slug)->firstOrFail();
+
+        $others = TeamMember::query()
+            ->active()
+            ->where('id', '!=', $member->id)
+            ->orderBy('order')
+            ->get();
+
+        return view('public.team.show', [
+            'settings' => SiteSetting::cached(),
+            'member' => $member,
+            'others' => $others,
+        ]);
+    }
+
     public function contact()
     {
         return view('public.contact', [

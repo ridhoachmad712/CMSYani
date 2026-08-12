@@ -29,6 +29,7 @@ Route::get('/layanan', [PageController::class, 'services'])->name('services.inde
 Route::get('/layanan/{slug}', [PageController::class, 'serviceShow'])->name('services.show');
 Route::get('/izin', [PageController::class, 'licenses'])->name('licenses');
 Route::get('/tentang', [PageController::class, 'about'])->name('about');
+Route::get('/tim/{slug}', [PageController::class, 'teamShow'])->name('team.show');
 Route::get('/kontak', [PageController::class, 'contact'])->name('contact');
 
 // Artikel / Blog Pajak
@@ -59,6 +60,12 @@ Route::get('/sitemap.xml', function () {
     Service::query()->where('is_active', true)->orderBy('order')->get()->each(
         fn (Service $service) => $sitemap->add(
             Url::create(route('services.show', $service->slug))->setPriority(0.6)
+        )
+    );
+
+    TeamMember::query()->active()->whereNotNull('slug')->orderBy('order')->get()->each(
+        fn (TeamMember $member) => $sitemap->add(
+            Url::create(route('team.show', $member->slug))->setPriority(0.5)
         )
     );
 
