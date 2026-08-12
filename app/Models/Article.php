@@ -47,9 +47,4 @@ class Article extends Model
                 $q->whereNull('published_at')->orWhere('published_at', '<=', now());
             });
     }
-
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
 }

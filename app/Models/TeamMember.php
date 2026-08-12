@@ -32,9 +32,4 @@ class TeamMember extends Model
     {
         return $query->where('is_active', true);
     }
-
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
 }

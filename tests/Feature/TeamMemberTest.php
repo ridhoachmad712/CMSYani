@@ -65,6 +65,23 @@ class TeamMemberTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_admin_tim_tetap_bisa_dibuka_walau_ada_anggota_tanpa_slug(): void
+    {
+        // Regresi: getRouteKeyName=slug membuat URL edit admin memakai slug.
+        // Bila slug kosong, tabel admin gagal render. URL admin harus pakai id.
+        TeamMember::create([
+            'name' => 'Tanpa Slug Admin',
+            'slug' => null,
+            'role' => 'Konsultan',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+        $user->assignRole('superadmin');
+
+        $this->actingAs($user)->get('/admin/team-members')->assertSuccessful();
+    }
+
     public function test_halaman_profil_anggota_tim_tampil(): void
     {
         $this->get('/tim/muhammad-yani')
