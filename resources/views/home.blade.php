@@ -3,6 +3,7 @@
     <x-sections.licenses :licenses="$licenses" />
     <x-sections.services :services="$services" />
     <x-sections.about :settings="$settings" />
+    <x-sections.team :members="$teamMembers" />
     <x-sections.values bg="bg-cream" />
     <x-sections.testimonials :testimonials="$testimonials" />
     <x-sections.latest-articles :articles="$latestArticles" />

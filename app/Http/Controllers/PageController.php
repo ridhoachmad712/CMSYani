@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\License;
 use App\Models\Service;
 use App\Models\SiteSetting;
+use App\Models\TeamMember;
 
 class PageController extends Controller
 {
@@ -46,6 +47,7 @@ class PageController extends Controller
         return view('public.about', [
             'settings' => SiteSetting::cached(),
             'licenses' => License::query()->orderBy('order')->get(),
+            'teamMembers' => TeamMember::query()->active()->orderBy('order')->get(),
         ]);
     }
 

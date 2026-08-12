@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\License;
 use App\Models\Service;
 use App\Models\SiteSetting;
+use App\Models\TeamMember;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Route;
 use Spatie\Sitemap\Sitemap;
@@ -17,6 +18,7 @@ Route::get('/', function () {
         'settings' => SiteSetting::cached(),
         'services' => Service::query()->where('is_active', true)->orderBy('order')->get(),
         'licenses' => License::query()->orderBy('order')->get(),
+        'teamMembers' => TeamMember::query()->active()->orderBy('order')->get(),
         'testimonials' => Testimonial::query()->active()->orderBy('order')->get(),
         'latestArticles' => Article::query()->published()->with('category')->latest('published_at')->limit(3)->get(),
     ]);

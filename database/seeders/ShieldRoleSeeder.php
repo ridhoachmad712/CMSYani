@@ -37,6 +37,7 @@ class ShieldRoleSeeder extends Seeder
     /** Subjek konten informatif: editor boleh create/update. */
     private const CONTENT = [
         'Testimonial',
+        'TeamMember',
         'Article',
         'ArticleCategory',
         'Faq',

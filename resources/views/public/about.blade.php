@@ -106,6 +106,9 @@
         </div>
     </section>
 
+    {{-- Tim Kami --}}
+    <x-sections.team :members="$teamMembers" />
+
     {{-- Kutipan nilai --}}
     @if ($settings->quote_text)
         <section class="bg-navy py-14">
