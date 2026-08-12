@@ -70,3 +70,14 @@ Route::get('/sitemap.xml', function () {
 
     return $sitemap->toResponse(request());
 })->name('sitemap');
+
+// Fallback route untuk menyajikan file storage secara otomatis di Hostinger Shared Hosting (tanpa butuh symlink/exec)
+Route::get('/storage/{path}', function (string $path) {
+    $filePath = storage_path('app/public/' . $path);
+    if (! file_exists($filePath)) {
+        abort(404);
+    }
+
+    return response()->file($filePath);
+})->where('path', '.*')->name('storage.serve');
+
