@@ -4,9 +4,9 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <x-section-heading
             class="reveal"
-            eyebrow="Legalitas Terpercaya"
-            title="Izin & Kualifikasi"
-            subtitle="Legalitas dan kompetensi resmi yang menjadi dasar kepercayaan setiap layanan kami." />
+            :eyebrow="site_text('izin_eyebrow')"
+            :title="site_text('izin_title')"
+            :subtitle="site_text('izin_subtitle')" />
 
         <div class="reveal mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             @foreach ($licenses as $license)

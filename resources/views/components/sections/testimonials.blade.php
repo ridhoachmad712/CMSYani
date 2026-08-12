@@ -34,7 +34,7 @@
     >
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="reveal flex flex-col items-center gap-4 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
-                <x-section-heading align="left" eyebrow="Testimoni" title="Apa Kata Klien" />
+                <x-section-heading align="left" :eyebrow="site_text('testimoni_eyebrow')" :title="site_text('testimoni_title')" />
                 <div class="flex gap-2">
                     <button type="button" @click="step(-1)" aria-label="Sebelumnya"
                             class="flex h-11 w-11 items-center justify-center rounded-full border border-navy/15 text-navy transition hover:border-gold hover:text-gold-dark">

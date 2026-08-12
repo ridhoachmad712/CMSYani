@@ -5,11 +5,11 @@
              class="{{ $dark ? 'bg-navy' : 'border-t border-navy/5 bg-white' }} py-14 sm:py-20 lg:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="reveal mx-auto flex max-w-2xl flex-col items-center text-center">
-                <span class="mb-2 text-sm font-semibold uppercase tracking-widest {{ $dark ? 'text-gold' : 'text-gold-dark' }}">Profesional &amp; Berpengalaman</span>
-                <h2 class="text-3xl font-bold sm:text-4xl {{ $dark ? 'text-cream' : 'text-navy' }}">Tim Konsultan &amp; Rekan</h2>
+                <span class="mb-2 text-sm font-semibold uppercase tracking-widest {{ $dark ? 'text-gold' : 'text-gold-dark' }}">{{ site_text('tim_eyebrow') }}</span>
+                <h2 class="text-3xl font-bold sm:text-4xl {{ $dark ? 'text-cream' : 'text-navy' }}">{{ site_text('tim_title') }}</h2>
                 <div class="mx-auto mt-3 h-1 w-20 rounded bg-gold"></div>
                 <p class="mt-4 {{ $dark ? 'text-cream/75' : 'text-navy/70' }}">
-                    KAP Muhammad Yani &amp; Rekan didukung oleh para konsultan dan ahli hukum perpajakan yang siap mendampingi kepatuhan serta solusi hukum bisnis Anda.
+                    {{ site_text('tim_subtitle') }}
                 </p>
             </div>
 

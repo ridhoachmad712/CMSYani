@@ -5,10 +5,10 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="reveal mb-10 flex items-end justify-between">
                 <div>
-                    <h2 class="text-3xl font-bold text-navy sm:text-4xl">Artikel Terbaru</h2>
+                    <h2 class="text-3xl font-bold text-navy sm:text-4xl">{{ site_text('artikel_title') }}</h2>
                     <div class="mt-3 h-1 w-20 rounded bg-gold"></div>
                 </div>
-                <a href="{{ route('articles.index') }}" class="hidden text-sm font-semibold text-gold-dark hover:underline sm:block">Lihat semua &rarr;</a>
+                <a href="{{ route('articles.index') }}" class="hidden text-sm font-semibold text-gold-dark hover:underline sm:block">{{ site_text('artikel_cta') }} &rarr;</a>
             </div>
 
             <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

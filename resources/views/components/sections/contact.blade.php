@@ -10,9 +10,9 @@
         @if ($showHeading)
             <x-section-heading
                 class="reveal"
-                eyebrow="Konsultasi"
-                title="Hubungi Kami"
-                subtitle="{{ $showForm ? 'Sampaikan kebutuhan perpajakan Anda. Kami siap membantu memberikan solusi terbaik.' : 'Kunjungi kantor kami atau hubungi melalui kontak di bawah ini.' }}" />
+                :eyebrow="site_text('kontak_eyebrow')"
+                :title="site_text('kontak_title')"
+                :subtitle="$showForm ? 'Sampaikan kebutuhan perpajakan Anda. Kami siap membantu memberikan solusi terbaik.' : site_text('kontak_subtitle')" />
         @endif
 
         <div class="mt-14 grid gap-10 {{ $showForm ? 'lg:grid-cols-2' : '' }}">

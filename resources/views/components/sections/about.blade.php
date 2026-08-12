@@ -5,7 +5,7 @@
         <div class="grid items-center gap-12 lg:grid-cols-2">
             {{-- Teks --}}
             <div class="reveal">
-                <x-section-heading align="left" eyebrow="Mengenal Kami" title="Tentang Kami" />
+                <x-section-heading align="left" :eyebrow="site_text('tentang_eyebrow')" :title="site_text('tentang_title')" />
 
                 <div class="mt-6 space-y-4 text-lg leading-relaxed text-navy/80">
                     @forelse (preg_split('/\R{2,}/', trim((string) $settings->about_text)) as $paragraph)
@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="mt-8">
-                    <x-btn :href="route('about')" variant="outline-dark">Selengkapnya Tentang Kami</x-btn>
+                    <x-btn :href="route('about')" variant="outline-dark">{{ site_text('tentang_cta') }}</x-btn>
                 </div>
             </div>
 

@@ -4,9 +4,9 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <x-section-heading
             class="reveal"
-            eyebrow="Apa yang Kami Tawarkan"
-            title="Layanan Kami"
-            subtitle="Layanan profesional di bidang perpajakan dan hukum pajak untuk perusahaan, individu, maupun instansi." />
+            :eyebrow="site_text('layanan_eyebrow')"
+            :title="site_text('layanan_title')"
+            :subtitle="site_text('layanan_subtitle')" />
 
         <div class="reveal mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             @foreach ($services as $service)
@@ -32,7 +32,7 @@
         </div>
 
         <div class="mt-12 text-center">
-            <x-btn :href="route('services.index')" variant="outline-dark">Lihat Semua Layanan</x-btn>
+            <x-btn :href="route('services.index')" variant="outline-dark">{{ site_text('layanan_cta') }}</x-btn>
         </div>
     </div>
 </section>

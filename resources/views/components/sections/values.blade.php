@@ -3,9 +3,9 @@
 @php
     // Nilai inti dari brosur (01-project-brief.md bagian 5.5).
     $values = [
-        ['title' => 'Profesional', 'icon' => 'heroicon-o-briefcase', 'desc' => 'Layanan yang kompeten, terukur, dan sesuai ketentuan perpajakan.'],
-        ['title' => 'Integritas', 'icon' => 'heroicon-o-shield-check', 'desc' => 'Jujur, independen, dan menjunjung tinggi etika dalam setiap penanganan.'],
-        ['title' => 'Kepercayaan', 'icon' => 'heroicon-o-user-group', 'desc' => 'Menjaga kerahasiaan dan membangun hubungan jangka panjang dengan klien.'],
+        ['title' => site_text('nilai1_title'), 'icon' => 'heroicon-o-briefcase', 'desc' => site_text('nilai1_desc')],
+        ['title' => site_text('nilai2_title'), 'icon' => 'heroicon-o-shield-check', 'desc' => site_text('nilai2_desc')],
+        ['title' => site_text('nilai3_title'), 'icon' => 'heroicon-o-user-group', 'desc' => site_text('nilai3_desc')],
     ];
 @endphp
 
