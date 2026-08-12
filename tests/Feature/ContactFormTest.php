@@ -72,4 +72,28 @@ class ContactFormTest extends TestCase
         $this->assertDatabaseCount('contact_messages', 0);
         Mail::assertNothingSent();
     }
+
+    public function test_rate_limit_memblokir_setelah_5_pengiriman(): void
+    {
+        Mail::fake();
+
+        for ($i = 1; $i <= 5; $i++) {
+            Livewire::test(ContactForm::class)
+                ->set('name', "Pengirim {$i}")
+                ->set('email', "orang{$i}@example.com")
+                ->set('message', 'Pesan konsultasi yang cukup panjang untuk lolos validasi.')
+                ->call('submit')
+                ->assertSet('sent', true);
+        }
+
+        // Pengiriman ke-6 harus terblokir rate limit.
+        Livewire::test(ContactForm::class)
+            ->set('name', 'Pengirim 6')
+            ->set('email', 'orang6@example.com')
+            ->set('message', 'Pesan konsultasi yang cukup panjang untuk lolos validasi.')
+            ->call('submit')
+            ->assertHasErrors('message');
+
+        $this->assertDatabaseCount('contact_messages', 5);
+    }
 }

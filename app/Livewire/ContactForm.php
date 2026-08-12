@@ -6,6 +6,7 @@ use App\Mail\ContactMessageReceived;
 use App\Models\ContactMessage;
 use App\Models\SiteSetting;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -57,7 +58,18 @@ class ContactForm extends Component
             return;
         }
 
+        // Rate limit: maksimal 5 pengiriman per 10 menit per IP.
+        $key = 'contact-form:' . request()->ip();
+        if (RateLimiter::tooManyAttempts($key, 5)) {
+            $seconds = RateLimiter::availableIn($key);
+            $this->addError('message', "Terlalu banyak pengiriman. Silakan coba lagi dalam {$seconds} detik.");
+
+            return;
+        }
+
         $validated = $this->validate();
+
+        RateLimiter::hit($key, 600);
 
         $contactMessage = ContactMessage::create([
             'name' => $validated['name'],

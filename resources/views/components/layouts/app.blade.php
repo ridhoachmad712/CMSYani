@@ -23,6 +23,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $pageTitle }}</title>
     <meta name="description" content="{{ $pageDescription }}">
+    <link rel="canonical" href="{{ url()->current() }}">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0B1E3D">
+    <meta name="geo.region" content="ID-SN">
+    <meta name="geo.placename" content="Makassar">
+    <meta name="author" content="KAP Muhammad Yani">
 
     {{-- Favicon --}}
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
@@ -43,6 +49,8 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
+
+    <x-schema-org :settings="$settings" />
 </head>
 <body class="min-h-screen antialiased">
     {{-- Header --}}
