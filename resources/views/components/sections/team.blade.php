@@ -21,8 +21,8 @@
                     @endphp
                     <div class="group relative flex flex-col overflow-hidden rounded-2xl border {{ $dark ? 'border-white/10 bg-white' : 'border-navy/10 bg-cream' }} p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-xl">
                         <a href="{{ $profileUrl ?: route('about') . '#tim-kami' }}" class="flex flex-1 flex-col">
-                            {{-- Foto Profil (rasio 3:4) --}}
-                            <div class="relative mb-5 aspect-[3/4] w-full overflow-hidden rounded-xl bg-navy/5">
+                            {{-- Foto Profil (rasio 1:1) --}}
+                            <div class="relative mb-5 aspect-square w-full overflow-hidden rounded-xl bg-navy/5">
                                 @if ($photoUrl)
                                     <img src="{{ $photoUrl }}" alt="{{ $member->name }}"
                                          class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105">
