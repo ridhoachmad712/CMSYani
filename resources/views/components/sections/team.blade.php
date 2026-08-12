@@ -17,9 +17,10 @@
                 @foreach ($members as $member)
                     @php
                         $photoUrl = $member->photo ? asset('storage/' . $member->photo) : null;
+                        $profileUrl = filled($member->slug) ? route('team.show', $member->slug) : null;
                     @endphp
                     <div class="group relative flex flex-col overflow-hidden rounded-2xl border {{ $dark ? 'border-white/10 bg-white' : 'border-navy/10 bg-cream' }} p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-xl">
-                        <a href="{{ route('team.show', $member->slug) }}" class="flex flex-1 flex-col">
+                        <a href="{{ $profileUrl ?: route('about') . '#tim-kami' }}" class="flex flex-1 flex-col">
                         {{-- Foto Profil --}}
                         <div class="relative mb-6 aspect-[4/3] w-full overflow-hidden rounded-xl bg-navy/5">
                             @if ($photoUrl)
@@ -48,9 +49,11 @@
                             </p>
                         @endif
 
-                            <span class="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-semibold text-gold-dark">
-                                Lihat Profil <x-heroicon-o-arrow-right class="h-4 w-4 transition group-hover:translate-x-1" />
-                            </span>
+                            @if ($profileUrl)
+                                <span class="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-semibold text-gold-dark">
+                                    Lihat Profil <x-heroicon-o-arrow-right class="h-4 w-4 transition group-hover:translate-x-1" />
+                                </span>
+                            @endif
                         </a>
 
                         {{-- Kontak / Sosmed --}}

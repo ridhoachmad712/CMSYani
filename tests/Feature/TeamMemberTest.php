@@ -90,4 +90,19 @@ class TeamMemberTest extends TestCase
 
         $this->get('/tim/anggota-nonaktif')->assertNotFound();
     }
+
+    public function test_anggota_aktif_tanpa_slug_tidak_menjatuhkan_halaman(): void
+    {
+        // Data edge-case: anggota aktif dengan slug kosong tidak boleh membuat
+        // route('team.show') error dan menjatuhkan seluruh halaman.
+        TeamMember::create([
+            'name' => 'Tanpa Slug',
+            'slug' => null,
+            'role' => 'Konsultan',
+            'is_active' => true,
+        ]);
+
+        $this->get('/')->assertSuccessful();
+        $this->get('/tentang')->assertSuccessful();
+    }
 }

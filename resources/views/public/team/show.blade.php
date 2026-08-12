@@ -60,7 +60,7 @@
             <div class="mx-auto mt-14 max-w-6xl px-4 sm:px-6 lg:px-8">
                 <h2 class="mb-6 text-2xl font-bold text-navy">Anggota Tim Lainnya</h2>
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    @foreach ($others as $other)
+                    @foreach ($others->filter(fn ($o) => filled($o->slug)) as $other)
                         <a href="{{ route('team.show', $other->slug) }}"
                            class="flex items-center gap-4 rounded-2xl border border-navy/10 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-gold/50 hover:shadow-md">
                             @if ($other->photo)
